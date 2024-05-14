@@ -5,6 +5,7 @@ import sendMail from "../utills/sendMail.utills.js";
 const SendMailtoRegisteteruser=async function (req, res, next) {
   try {
     const { eventId, userId } = req.body;
+    console.log(eventId, userId)
     const event = await Event.findById(eventId);
     const user = await User.findById(userId);
 

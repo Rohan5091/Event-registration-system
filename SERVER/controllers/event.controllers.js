@@ -92,7 +92,7 @@ const modifyEvent = async function (req, res, next) {
 
 
 const deleteEvent = async function (req, res, next) {
-  const { eventid } = req.params;
+  const { eventid } = req.body;
   if(!eventid){
     return next(new ApiError(409, "Event id required"));
   }
