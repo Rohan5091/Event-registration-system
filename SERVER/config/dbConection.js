@@ -5,7 +5,10 @@
   try {
     
     const {connection}= await mongoose.connect(
-       `${process.env.MONGOOSE_URL}`
+       `${process.env.MONGOOSE_URL}`, {
+         useNewUrlParser: true,
+         useUnifiedTopology: true,
+     }
     )
     if (connection) {
        console.log(`database is sucessfull connected to ${connection.host}`);

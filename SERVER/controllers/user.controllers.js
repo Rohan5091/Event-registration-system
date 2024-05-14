@@ -148,7 +148,7 @@ const forgotPassword = async (req, res, next) => {
 
   const resetToken = await user.generatePasswordResetToken();
   await user.save();
-  console.log(resetToken);
+  
 
   const resetPasswordURL = `${process.env.CLIENT_URL}/ forreset_password <a href=${resetToken} >click here</a>`;
   const message = `${resetPasswordURL}`;

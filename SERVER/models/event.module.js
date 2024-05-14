@@ -1,26 +1,22 @@
-import { Schema, model } from "mongoose";
+import  { Schema, model } from "mongoose";
 
 const eventSchema=new Schema(
  {
     title:{
       type: String,
       required: ["true", "Title must be required"],
-      minlength: [3, "minimum length of name is 4"],
-      maxlength: [20, "maximum length is 50"],
-      lowercase: true,
       trim: true,
     },
-    describe:{
+    description:{
       type:String,
       required :true,
       trim: true,
     },
+    attendees: [{ 
+      type: Schema.Types.ObjectId, 
+      ref: 'User' 
+     }],
     date:{
-      type:Date,
-      required :true,
-      trim: true,
-    },
-    time:{
       type:Date,
       required :true,
       trim: true,
@@ -28,7 +24,6 @@ const eventSchema=new Schema(
     duration:{
       type:Number,
     },
-
      location:{
       type:String,
       required :true,

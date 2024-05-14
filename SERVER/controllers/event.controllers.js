@@ -1,12 +1,11 @@
 
-
-import Event from "../models/event.module";
+import Event from "../models/event.module.js";
 import ApiError from "../utills/error.utills.js";
 
 const createEvent = async function (req, res, next) {
-  const { title, description, date,time,location,duration} = req.body;
+  const { title, description, date,location,duration} = req.body;
 
-  if (!title, !description, !date, !time, !location) {
+  if (!title, !description, !date, !location) {
     return next(new ApiError(409, "Every field is required"));
   }
 
@@ -14,7 +13,6 @@ const createEvent = async function (req, res, next) {
     title,
     description, 
     date,
-    time,
     location,
     duration
   }); 
@@ -22,7 +20,7 @@ const createEvent = async function (req, res, next) {
   if (!event) {
     return next(new ApiError(409, "event is not created"));
   }
-  await user.save();
+  await event.save();
   return res.status(202).json({
     success: true,
     message: "Event is created sucessfully ",
@@ -31,7 +29,7 @@ const createEvent = async function (req, res, next) {
 };
 
 const getEvent = async function (req, res, next) {
-  const { eventid } = req.params;
+  const { eventid } = req.body;
   if(!eventid){
     return next(new ApiError(409, "Event id required"));
   }
@@ -39,14 +37,24 @@ const getEvent = async function (req, res, next) {
 
   return res.status(202).json({
     success: true,
-    message: "Event is deleted sucessfully ",
-    data:eventid
+    message: "this is event Details ",
+    data:event
+  });
+};
+
+const getAllEvent = async function (req, res, next) {
+  const events = await Event.find({})
+
+  return res.status(202).json({
+    success: true,
+    message: "this are events Details",
+    data:events
   });
 };
 
 
 const modifyEvent = async function (req, res, next) {
-  const { newtitle, newdescription, newdate, newtime, newlocation,newduration} = req.body;
+  const { newtitle, newdescription, newdate, newlocation,newduration} = req.body;
   const { eventid } = req.params;
 
   if(!eventid){
@@ -66,9 +74,6 @@ const modifyEvent = async function (req, res, next) {
   }
   if (newdate) {
      event.date=newdate;
-  }
-  if (newtime) {
-     event.time=newtime;
   }
   if (newlocation) {
      event.location=newlocation;
@@ -102,5 +107,6 @@ export {
   deleteEvent,
   modifyEvent,
   createEvent,
-  getEvent
+  getEvent,
+  getAllEvent
 }

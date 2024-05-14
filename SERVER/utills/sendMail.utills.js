@@ -1,34 +1,11 @@
 
 import nodemailer from "nodemailer"
 
-//  const sendMail= async function(email,subject,message) {
-// let transporter = nodemailer.createTransport(
-//   {
-//       host: process.env.GMAIL_HOST_NAME,
-//       port: process.env.GMAIL_PORT,
-//       auth: {
-//           user: process.env.GMAIL_USERNAME,
-//           pass: process.env.GMAIL_PASSWORD
-//       }
-//     });
-
-
-//     await transporter.sendMail({
-//         from:process.env.SMTP_FROM_MAIL,
-//         to:email,
-//         subject:subject,
-//         http:message
-//     })
-//   }
-  
-//   export default sendMail;
-
-
 
 const sendMail= async function(email,subject,message) {
 
     const auth = nodemailer.createTransport({
-        service: "gmail",
+        service: process.env.GMAIL_HOST_NAME,
         secure : true,
         port : 465,
         auth: {
@@ -39,7 +16,7 @@ const sendMail= async function(email,subject,message) {
     });
 
     const receiver = {
-        from : SMTP_FROM_MAIL,
+        from : process.env.SMTP_FROM_MAIL,
         to : email,
         subject : subject,
         text : message
@@ -54,3 +31,4 @@ const sendMail= async function(email,subject,message) {
     
   }
 
+export default sendMail;
