@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux"
+import { useDispzatch, useSelector } from "react-redux"
 import { Navigate, Outlet } from "react-router-dom"
 import { useEffect } from "react"
 

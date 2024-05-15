@@ -55,12 +55,12 @@ function EventCard({data}) {
    return `${day} ${month} ${year} ${hours}:${minutesStr} ${ampm}`;
 }
   return (
-    <div className=" flex pt-12 px-20 border-2 border-gray-200 text-white flex-row justify-center items-center">
+    <div className=" flex pt-12 px-20 border-2 rounded-2xl border-gray-200 text-white flex-row justify-center items-center">
        <div className="grid grid-cols-1 gap-10 py-10 relative">
           <div className="space-y-5 mx-auto ">
               <div className="space-y-4">
                  <div className="flex  flex-col justify-between items-center text-xl">
-                    <p className="font-semibold max-w-80 mb-4">
+                    <p className="font-semibold text-center max-w-80 mb-4">
                         <span className="text-yellow-500 font-bold"> 
                           {data?.title}
                         </span>
@@ -83,7 +83,7 @@ function EventCard({data}) {
                         </span>
                           {data?.location}
                     </p>
-                    <p className="text-xs max-w-80">
+                    <p className="text-xs my-8 max-w-80">
                           {data?.description}
                     </p>
                     <button type="button" onClick={()=>onclicked(data._id)} className="m-4 focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">Participate Now</button>
