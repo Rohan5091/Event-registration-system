@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import axiosInstance from "../Hellers/axiosinstance";
 
 function Profile() {
    const [userData, setuserData] = useState({})
+   const navigate=useNavigate()
   async function DownloadData() {
     try {
       const response=await axiosInstance.get("/user/profile")
@@ -32,7 +33,7 @@ function Profile() {
             {userData?.fullName}
           </h3>
           {userData?.role == "ADMIN" && (
-            <button onClick={()=>Navigate("/event/create")}  className="w-full bg-red-500 border px-2 py-1 transition-all ease-in-out duration-300 rounded-lg hover:bg-red-600">
+            <button onClick={()=>navigate("/event/create")}  className="w-full bg-red-500 border px-2 py-1 transition-all ease-in-out duration-300 rounded-lg hover:bg-red-600">
               {" "}
               Create New Event
             </button>

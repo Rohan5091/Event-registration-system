@@ -45,7 +45,7 @@ function EventCard({data}) {
           <div className="space-y-5 mx-auto ">
               <div className="space-y-4">
                  <div className="flex  flex-col justify-between items-center text-xl">
-                    <p className="font-semibold mb-4">
+                    <p className="font-semibold max-w-80 mb-4">
                         <span className="text-yellow-500 font-bold"> 
                           {data?.title}
                         </span>
@@ -68,7 +68,7 @@ function EventCard({data}) {
                         </span>
                           {data?.location}
                     </p>
-                    <p className="">
+                    <p className="text-xs max-w-80">
                           {data?.description}
                     </p>
                     <button type="button" onClick={()=>onclicked(data._id)} className="m-4 focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">Participate Now</button>

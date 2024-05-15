@@ -42,11 +42,11 @@ function handleInput(e) {
 // formData.append("location",inputData.location)
 // formData.append("duration",inputData.duration)
 const formData={
-   title:title, 
-   description:description,
-   date:date,
-   location:location,
-   duration:duration
+   title:inputData.title, 
+   description:inputData.description,
+   date:inputData.date,
+   location:inputData.location,
+   duration:inputData.duration
 }
 console.log(formData);
   try {

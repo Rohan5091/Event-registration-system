@@ -23,7 +23,6 @@ function App() {
             {/* <Route path='/event/create' element={<CreateEvent/>}/> */}
             {/* <Route path='/admin/dashboard' element={<Dashboard/>}/>  */}
         </Route>
-           
         <Route element={<RequireAuth allowedRoles={["ADMIN","USER"]}/>}>
             <Route path='/user/editprofile' element={<EditProfile/>}/>
         </Route>
@@ -31,5 +30,4 @@ function App() {
     
   )
 }
-
 export default App
