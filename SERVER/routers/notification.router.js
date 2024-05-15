@@ -5,7 +5,6 @@ import { SendMailtoRegisteteruser } from "../controllers/notification.cotroller.
 
 const notificationRouter=Router()
 
-
 notificationRouter.post("/registered_user",isLoggedIn,SendMailtoRegisteteruser)
 
 

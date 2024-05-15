@@ -31,6 +31,7 @@ app.use("/api/v1/data/",mescellaniousRoute);
 app.use("/api/v1/user/",userRoute);
 app.use("/api/v1/event/",eventRouter);
 app.use("/api/v1/notify/",notificationRouter);
+// app.use("/api/v1/atendee",atendeeRouter)
 
 
 

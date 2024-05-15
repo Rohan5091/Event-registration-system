@@ -1,13 +1,30 @@
 import { useNavigate, useParams } from "react-router-dom"
 import EventDescription from "./EventDescription";
+import axiosInstance from "../Hellers/axiosinstance";
 
 
 function EventCard({data}) {
   
   const navigate=useNavigate()
+   async function onclicked(eventId) {
+      // const formData=new FormData()
+      // formData.append("eventId",eventId)
+        const formData={
+         eventId:eventId
+        }
+      try {
+         console.log(formData);
+         const response=await axiosInstance.post("/notify/registered_user",formData)
+         console.log(response);
+         if (response?.data?.success) {
+             navigate("/Success")
+         }
 
+      } catch (error) {
+         console.log(error?.response?.data?.message); 
+      }
+  }
   function formatDate(dat) {
-
    const date=new Date(dat)
    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
@@ -55,12 +72,10 @@ function EventCard({data}) {
                     <p className="">
                           {data?.description}
                     </p>
-                    <button type="button" class="m-4 focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">Participate Now</button>
+                    <button type="button" onClick={()=>onclicked(data._id)} class="m-4 focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">Participate Now</button>
                  </div>
               </div> 
-
           </div>
-          
        </div>
     </div>
   )

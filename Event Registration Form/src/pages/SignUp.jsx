@@ -34,7 +34,6 @@ function SignUp() {
           avatar:uploadedImage
         });
 
-        // we can do this for to collect the metadata of the image
 
         const fileReader=new FileReader()
         fileReader.readAsDataURL(uploadedImage);

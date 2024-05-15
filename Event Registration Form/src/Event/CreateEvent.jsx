@@ -1,41 +1,23 @@
 import { useState } from "react"
 import toast from "react-hot-toast"
-import { Link, useNavigate } from "react-router-dom"
-import { CreateNewCourse } from "../../Redux/Slices/CourseSlices"
-import { AiOutlineArrowLeft } from "react-icons/ai";
+import { useNavigate } from "react-router-dom"
+import axiosInstance from "../Hellers/axiosinstance";
 
 
 
 
-function CreateCourse() {
+function CreateEvent() {
    const navigate =useNavigate()
  
 
 const [inputData,setInputData]=useState({
        title:"",
        description:"",
-       category:"",
-       createdBy:"",
-       thumbnail:"",
-       previewImage:"",
+      
    })
    
    
-function handleImageUpload (e) {
-      e.preventDefault()
-      const uploadedImage=e.target.files[0]
-      if (uploadedImage) {
-         const fileReader= new FileReader()
-         fileReader.readAsDataURL(uploadedImage)
-         fileReader.addEventListener("load",function () {
-          setInputData({
-             ...inputData,
-             previewImage:this.result,
-             thumbnail:uploadedImage
-          }) 
-         })
-      }
-   }
+
 function handleInput(e) {
       const {name,value}=e.target
       setInputData({
@@ -60,7 +42,7 @@ formData.append("createdBy",inputData.createdBy)
 formData.append("thumbnail",inputData.thumbnail)
 
 
-  const response=await dispatch(CreateNewCourse(formData))
+  const response=await axiosInstance.post("")
   if (response?.payload) {
      setInputData({
       title:"",
@@ -80,37 +62,9 @@ formData.append("thumbnail",inputData.thumbnail)
           className="flex flex-col justify-center gap-5 rounded-lg p-4 text-white w-[700px] my-10 shadow-[0_0_10px_yellow] relative "
           onSubmit={onFormSubmit}
        >
-           <Link className="absolute top-8 text-3xl link text-accent cursor-pointer">
-              <AiOutlineArrowLeft />
-           </Link>
            <h1 className="text-center font-bold text-2xl">Create new Course</h1> 
            <main className="grid grid-cols-2 gap-x-10 ">
               <div className="space-y-6">
-                 <div>
-                      <label htmlFor="image_uploads" className="cursor-pointer"> 
-                       {  inputData.previewImage ? (
-                          <img 
-                            src={inputData.previewImage}
-                            alt="previewImage" 
-                            className="w-full h-44 m-auto border "
-                          />
-                       ) :(
-                          <div  className="w-full h-44 m-auto flex items-center justify-center border">
-                              <h1 className="font-bold text-lg "> Upload your course thumbnail </h1>
-                          </div>
-                       )
-                       }
-                      </label>
-                      <input
-                        onChange={handleImageUpload}
-                        className="hidden" 
-                        type="file"
-                        id="image_uploads"
-                        accept=".jpg .png .jpeg"
-                        name="image_uploads"
-                      />
-                        
-                 </div>
                  <div className="flex flex-col gap-1">
                       <label htmlFor="title" className="text-lg font-semibold">
                          Course title 
@@ -179,4 +133,4 @@ formData.append("thumbnail",inputData.thumbnail)
   )
 }
 
-export default CreateCourse
+export default CreateEvent

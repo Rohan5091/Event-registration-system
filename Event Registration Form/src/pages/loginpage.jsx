@@ -45,8 +45,8 @@ function Login() {
      
      const response=await axiosInstance.post("/user/login",formData)
       
-     if (response?.success) {
-        navigate("/")
+     if (response?.data?.success) {
+        navigate("/eventlist")     
       }
 
      setLoginData({
@@ -94,7 +94,7 @@ function Login() {
             Do not have a account?{" "}
             <Link
               className="text-yellow-500 text-lg font-semibold"
-              to={"/SignUp"}
+              to={"/"}
             >
               SignUp
             </Link>

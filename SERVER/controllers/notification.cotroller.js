@@ -4,15 +4,14 @@ import sendMail from "../utills/sendMail.utills.js";
 
 const SendMailtoRegisteteruser=async function (req, res, next) {
   try {
-    const { eventId, userId } = req.body;
-    console.log(eventId, userId)
+    const userId=req.user.id;
+    const { eventId} = req.body;
     const event = await Event.findById(eventId);
     const user = await User.findById(userId);
 
     if (!event || !user) {
         return res.status(404).send('Event or User not found');
     }
-
     event.attendees.push(user._id);
     await event.save();
 
@@ -20,11 +19,13 @@ const SendMailtoRegisteteruser=async function (req, res, next) {
 
     await sendMail(user.email, 'Event Registration Confirmation', message);
 
-    res.status(200).send('User registered for the event and email sent.');
+    res.status(200).json({
+        success: true,
+        message: "Your request has been submitted successfully",
+      });
 } catch (error) {
     res.status(500).send('Server error');
 }
-
 }
 
 

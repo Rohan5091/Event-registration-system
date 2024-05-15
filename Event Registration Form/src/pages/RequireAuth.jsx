@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
 import { Navigate, Outlet } from "react-router-dom"
-import { GetUserProfile } from "../Redux/Slices/AuthSlices"
 import { useEffect } from "react"
 
 
@@ -9,7 +8,6 @@ import { useEffect } from "react"
 
 
 function RequireAuth({allowedRoles}) {
-  const {role,isLoggedIn}=useSelector( state => state.auth)
   const dispatch=useDispatch()
   async function setData() {
      await dispatch(GetUserProfile())
