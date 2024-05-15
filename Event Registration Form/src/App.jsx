@@ -9,6 +9,7 @@ import RequireAuth from './pages/RequireAuth'
 import CreateEvent from './Event/CreateEvent'
 import Profile from './User/Profile'
 import EditProfile from './User/EditProfile'
+import AlreadyRegistered from './pages/AlreadyRegistered'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
          <Route path='/' element={<SignUp/>}/>
          <Route path='/login' element={<Login/>}/>
          <Route path='/Success' element={<Success/>}/>
+         <Route path='/alreadyregistered' element={<AlreadyRegistered/>}/>
          <Route path='/user/profile' element={<Profile/>}/>
         <Route path='/event/create' element={<CreateEvent/>}/>
          <Route element={<RequireAuth allowedRoles={["ADMIN"]}/>}>

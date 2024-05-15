@@ -4,7 +4,7 @@ import { createEvent, deleteEvent, getAllEvent, getEvent, modifyEvent } from "..
 
 const eventRouter=Router()
 
-eventRouter.get("/geteventdetail",getEvent)
+eventRouter.post("/geteventdetail",getEvent)
 eventRouter.get("/getalleventdetail",getAllEvent)
 eventRouter.post("/createevent",createEvent)
 eventRouter.put("/updateevent",authrizedRoll("ADMIN"),modifyEvent)

@@ -8,20 +8,35 @@ function EventCard({data}) {
   const navigate=useNavigate()
    async function onclicked(eventId) {
         
-        const formData={
+      const formData={
          eventId:eventId
         }
-      try {
-         console.log(formData);
-         const response=await axiosInstance.post("/notify/registered_user",formData)
-         console.log(response);
-         if (response?.data?.success) {
-             navigate("/Success")
-         }
 
-      } catch (error) {
-         console.log(error?.response?.data?.message); 
-      }
+        try {
+           const eventdata=await axiosInstance.post("/event/geteventdetail",formData)
+           const userdata=await axiosInstance.get("/user/profile")
+
+           const attendees=eventdata?.data?.data?.attendees
+           const attendee=userdata?.data?.data?._id
+
+           if (attendees.includes(attendee)) {
+             navigate("/alreadyregistered")
+           } else{
+            try {
+               const response=await axiosInstance.post("/notify/registered_user",formData)
+               console.log(response);
+               if (response?.data?.success) {
+                   navigate("/Success")
+               }
+            } catch (error) {
+               console.log(error?.response?.data?.message); 
+            }  
+           }
+        } catch (error) {
+           console.log(error.message);
+        }
+
+      
   }
   function formatDate(dat) {
    const date=new Date(dat)
