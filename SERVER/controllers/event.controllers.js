@@ -43,7 +43,7 @@ const getEvent = async function (req, res, next) {
 };
 
 const getAllEvent = async function (req, res, next) {
-  const events = await Event.find({})
+  const events = await Event.find({ date: { $gte: new Date(Date.now()) } })
 
   return res.status(202).json({
     success: true,
