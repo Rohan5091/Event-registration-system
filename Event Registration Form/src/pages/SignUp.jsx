@@ -70,8 +70,9 @@ function SignUp() {
      
      try {
        const response=await axiosInstance.post("/user/register" ,formData)
-       if (response?.response.data?.success) {
-         navigate("/")
+       console.log(response);
+       if (response?.data?.success) {
+         navigate("/eventlist")
       }
 
      } catch (error) {

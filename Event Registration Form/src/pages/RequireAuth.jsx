@@ -8,7 +8,6 @@ import { useEffect } from "react"
 
 
 function RequireAuth({allowedRoles}) {
-  const dispatch=useDispatch()
   async function setData() {
      await dispatch(GetUserProfile())
   }

@@ -82,7 +82,7 @@ const register = async function (req, res, next) {
 
 const login = async (req, res, next) => {
   const { email, password } = req.body;
-  
+  console.log(password);
   if (!email || !password) {
     return next(new ApiError(409, "Every field is required"));
   }

@@ -7,8 +7,7 @@ function EventCard({data}) {
   
   const navigate=useNavigate()
    async function onclicked(eventId) {
-      // const formData=new FormData()
-      // formData.append("eventId",eventId)
+        
         const formData={
          eventId:eventId
         }
@@ -72,7 +71,7 @@ function EventCard({data}) {
                     <p className="">
                           {data?.description}
                     </p>
-                    <button type="button" onClick={()=>onclicked(data._id)} class="m-4 focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">Participate Now</button>
+                    <button type="button" onClick={()=>onclicked(data._id)} className="m-4 focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">Participate Now</button>
                  </div>
               </div> 
           </div>

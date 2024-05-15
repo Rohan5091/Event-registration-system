@@ -17,12 +17,14 @@ function App() {
          <Route path='/' element={<SignUp/>}/>
          <Route path='/login' element={<Login/>}/>
          <Route path='/Success' element={<Success/>}/>
+         <Route path='/user/profile' element={<Profile/>}/>
+        <Route path='/event/create' element={<CreateEvent/>}/>
          <Route element={<RequireAuth allowedRoles={["ADMIN"]}/>}>
-            <Route path='/event/create' element={<CreateEvent/>}/>
+            {/* <Route path='/event/create' element={<CreateEvent/>}/> */}
             {/* <Route path='/admin/dashboard' element={<Dashboard/>}/>  */}
         </Route>
+           
         <Route element={<RequireAuth allowedRoles={["ADMIN","USER"]}/>}>
-            <Route path='/user/profile' element={<Profile/>}/>
             <Route path='/user/editprofile' element={<EditProfile/>}/>
         </Route>
     </Routes>

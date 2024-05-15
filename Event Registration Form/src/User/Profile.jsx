@@ -1,18 +1,20 @@
-import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, Navigate } from "react-router-dom";
 import axiosInstance from "../Hellers/axiosinstance";
 
 function Profile() {
    const [userData, setuserData] = useState({})
   async function DownloadData() {
     try {
-      const response=await axiosInstance.get("user/profile")
-      if (response) {
+      const response=await axiosInstance.get("/user/profile")
+      if (response?.data?.success) {
+        setuserData(response?.data?.data)
       }
     } catch (error) {
       console.log(error?.response?.data?.message);
     }
   }
+ 
 
   useEffect(() => {
     DownloadData();
@@ -29,20 +31,12 @@ function Profile() {
           <h3 className="text-3xl font-bold capitalize text-yellow-500">
             {userData?.fullName}
           </h3>
-          
-          <div className="w-full space-x-4 ">
-            <Link to={"/changepassword"}>
-              <button className=" bg-yellow-500 border px-4 py-1 transition-all ease-in-out duration-300 rounded-lg hover:bg-yellow-600 ">
-                Change Password
-              </button>
-            </Link>
-            <Link to={"/user/editprofile"}>
-              <button className="w-1/2 bg-yellow-500 border px-2 py-1 transition-all ease-in-out duration-300 rounded-lg hover:bg-yellow-600 ">
-                Edit Profile
-              </button>
-            </Link>
-          </div>
-          
+          {userData?.role == "ADMIN" && (
+            <button onClick={()=>Navigate("/event/create")}  className="w-full bg-red-500 border px-2 py-1 transition-all ease-in-out duration-300 rounded-lg hover:bg-red-600">
+              {" "}
+              Create New Event
+            </button>
+          )}    
         </div>
       </div>
   );

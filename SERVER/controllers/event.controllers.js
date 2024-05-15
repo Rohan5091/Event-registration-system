@@ -8,7 +8,6 @@ const createEvent = async function (req, res, next) {
   if (!title, !description, !date, !location) {
     return next(new ApiError(409, "Every field is required"));
   }
-
   const event = await Event.create({
     title,
     description, 
@@ -29,11 +28,11 @@ const createEvent = async function (req, res, next) {
 };
 
 const getEvent = async function (req, res, next) {
-  const { eventid } = req.body;
-  if(!eventid){
+  const { eventId } = req.body;
+  if(!eventId){
     return next(new ApiError(409, "Event id required"));
   }
-  const event = await Event.findById(eventid);
+  const event = await Event.findById(eventId);
 
   return res.status(202).json({
     success: true,
@@ -54,8 +53,8 @@ const getAllEvent = async function (req, res, next) {
 
 
 const modifyEvent = async function (req, res, next) {
-  const { newtitle, newdescription, newdate, newlocation,newduration} = req.body;
-  const { eventid } = req.params;
+  const { newdate, newlocation} = req.body;
+  const { eventid } = req.body;
 
   if(!eventid){
     return next(new ApiError(409, "Event id required"));
@@ -66,20 +65,13 @@ const modifyEvent = async function (req, res, next) {
   if(!event){
     return next(new ApiError(409, "Does not have any event please provide correct event id"));  
   }
-  if (newtitle) {
-     event.title=newtitle;
-  }
-  if (newdescription) {
-     event.description=newdescription;
-  }
+  
+  
   if (newdate) {
      event.date=newdate;
   }
   if (newlocation) {
      event.location=newlocation;
-  }
-  if (newduration) {
-     event.duration=newduration;
   }
   
   await user.save();
