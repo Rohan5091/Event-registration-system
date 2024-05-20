@@ -3,12 +3,8 @@ import toast from "react-hot-toast"
 import { useNavigate } from "react-router-dom"
 import axiosInstance from "../Hellers/axiosinstance";
 
-
-
-
 function CreateEvent() {
    const navigate =useNavigate()
- 
 
 const [inputData,setInputData]=useState({
    title:"",
@@ -34,13 +30,7 @@ function handleInput(e) {
      toast.error("Every field is required")
   }
 
-// const formData=new FormData()
 
-// formData.append("title",inputData.title)
-// formData.append("description",inputData.description)
-// formData.append("date",inputData.date)
-// formData.append("location",inputData.location)
-// formData.append("duration",inputData.duration)
 const formData={
    title:inputData.title, 
    description:inputData.description,

@@ -11,7 +11,6 @@ const sendMail= async function(email,subject,message) {
         auth: {
             user: process.env.GMAIL_USERNAME,
             pass: process.env.GMAIL_APP_PASSWORD
-
         }
     });
 

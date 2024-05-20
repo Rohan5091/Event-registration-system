@@ -54,13 +54,14 @@ const getAllEvent = async function (req, res, next) {
 
 const modifyEvent = async function (req, res, next) {
   const { newdate, newlocation} = req.body;
-  const { eventid } = req.body;
-
-  if(!eventid){
+  const { eventId } = req.body;
+  
+   console.log( newdate, newlocation);
+  if(!eventId){
     return next(new ApiError(409, "Event id required"));
   }
   
-  const event = await Event.findById(eventid);
+  const event = await Event.findById(eventId);
   
   if(!event){
     return next(new ApiError(409, "Does not have any event please provide correct event id"));  
@@ -70,25 +71,28 @@ const modifyEvent = async function (req, res, next) {
   if (newdate) {
      event.date=newdate;
   }
+
   if (newlocation) {
      event.location=newlocation;
   }
   
-  await user.save();
+  await event.save();
+
   return res.status(202).json({
     success: true,
-    message: "Event is created sucessfully ",
+    message: "Event is modify sucessfully ",
     data: event,
   });
 };
 
 
 const deleteEvent = async function (req, res, next) {
-  const { eventid } = req.body;
-  if(!eventid){
+  const { eventId } = req.body;
+ 
+  if(!eventId){
     return next(new ApiError(409, "Event id required"));
   }
- await Event.findByIdAndDelete(eventid)
+ await Event.findByIdAndDelete(eventId)
   return res.status(202).json({
     success: true,
     message: "Event is deleted sucessfully ",

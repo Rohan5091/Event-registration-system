@@ -1,6 +1,8 @@
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 
 function AlreadyRegistered() {
+  const attendee=useLocation()
+  console.log(attendee);
   const navigate=useNavigate()
   return (
     <div className="h-screen gap-4 flex flex-col items-center justify-center relative bg-[#1A2238]">

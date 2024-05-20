@@ -1,13 +1,13 @@
 import { Router } from "express";
-import { authrizedRoll } from "../middlewares/userAuth.js";
+import { authrizedRoll, isLoggedIn } from "../middlewares/userAuth.js";
 import { createEvent, deleteEvent, getAllEvent, getEvent, modifyEvent } from "../controllers/event.controllers.js";
 
 const eventRouter=Router()
 
-eventRouter.post("/geteventdetail",getEvent)
-eventRouter.get("/getalleventdetail",getAllEvent)
-eventRouter.post("/createevent",createEvent)
-eventRouter.put("/updateevent",authrizedRoll("ADMIN"),modifyEvent)
-eventRouter.delete("/removeevent",deleteEvent)
+eventRouter.post("/geteventdetail",isLoggedIn,authrizedRoll('ADMIN',"USER"),getEvent)
+eventRouter.get("/getalleventdetail",isLoggedIn,authrizedRoll('ADMIN',"USER"),getAllEvent)
+eventRouter.post("/createevent",isLoggedIn,authrizedRoll('ADMIN'),createEvent)
+eventRouter.put("/updateevent",isLoggedIn,authrizedRoll("ADMIN"),modifyEvent)
+eventRouter.post("/removeevent",isLoggedIn,authrizedRoll('ADMIN'),deleteEvent)
 
 export default eventRouter;

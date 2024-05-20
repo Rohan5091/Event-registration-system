@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react"
 import axiosInstance from "../Hellers/axiosinstance.js"
 import toast from "react-hot-toast"
-import EventCard from "./EventCard.jsx"
+
 import { BsPersonCircle } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
+import EventCard from "./EventCard.jsx";
              
 function EventsList() {
   const navigate=useNavigate()
@@ -28,9 +29,9 @@ function EventsList() {
               <BsPersonCircle/>
           </div>
          <h1 className="text-center text-3xl">
-             Explore all upcoming Events that are conducted by <span className="font-bold text-yellow-500">GFG Student Chapter</span>
+             Explore all upcoming Events, conducted by <span className="font-bold text-yellow-500">GFG Student Chapter</span>
          </h1>
-         <div className="flex flex-wrap gap-4 p-10">
+         <div className="flex justify-center flex-wrap gap-4 p-10">
              {Events?.map((Event)=>{
                 return <EventCard key={Event._id} data={Event}/>
              })}   

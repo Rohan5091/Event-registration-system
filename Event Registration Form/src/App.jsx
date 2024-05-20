@@ -10,6 +10,8 @@ import Profile from './User/Profile'
 import EditProfile from './User/EditProfile'
 import AlreadyRegistered from './pages/AlreadyRegistered'
 import DiniedPage from './pages/DiniedPage copy'
+import EventDescription from './Event/EventDescription'
+import EditEvent from './Event/EditEventdetails'
 
 function App() {
   return (
@@ -17,12 +19,14 @@ function App() {
          <Route path='/eventlist' element={<EventsList/>}/>
          <Route path='/' element={<SignUp/>}/>
          <Route path='/login' element={<Login/>}/>
+         <Route path='event/edit' element={<EditEvent/>}/>
          <Route path='/Success' element={<Success/>}/>
          <Route path='/denied' element={<DiniedPage/>}/>
          <Route path='/alreadyregistered' element={<AlreadyRegistered/>}/>
          <Route path='/event/create' element={<CreateEvent/>}/>
          <Route path='/user/editprofile' element={<EditProfile/>}/>
          <Route path='/user/profile' element={<Profile/>}/>
+         <Route path='/eventDescription/:eventId' element={<EventDescription/>}/>
 
 
          {/* <Route element={<RequireAuth allowedRoles={["ADMIN"]}/>}>
