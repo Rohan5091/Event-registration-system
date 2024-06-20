@@ -31,19 +31,16 @@ const SendMailtoRegisteteruser=async function (req, res, next) {
 
 const SendOTP=async function (req, res, next) {
   try {
-    const userId=req.user.id;
-    const { otp} = req.body;
-    const user = await User.findById(userId);
-
-    if (!user) {
-        return res.status(404).send('User not found');
+   
+    const {otp,email} = req.body;
+    if (
+      !otp || !email
+    ) {
+      res.status(500).send('otp or email not found');
     }
-  
-    const message = `Dear  ${user.fullName},\n\n\n
-     Your One Time Password is\n\n\n ${otp} \n\n\n
-    `;
+    const message = `\nYour One Time Password is\n\n\n ${otp} \n\n\n `;
 
-    await sendMail(user.email, 'Event Registration Confirmation', message);
+    await sendMail(email, 'Verify OTP', message);
 
     res.status(200).json({
         success: true,

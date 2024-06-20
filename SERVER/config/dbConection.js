@@ -3,7 +3,6 @@
  mongoose.set("strictQuery",false)
  const conectDB= async ()=>{
   try {
-    
     const {connection}= await mongoose.connect(
        `${process.env.MONGOOSE_URL}`, {
          useNewUrlParser: true,
