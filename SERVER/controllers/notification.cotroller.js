@@ -2,6 +2,27 @@ import Event from "../models/event.module.js";
 import User from "../models/user.model.js";
 import sendMail from "../utills/sendMail.utills.js";
 
+const SendmessageToUser=async function (req, res, next) {
+  try {
+    const userId=req.user.id;
+    const { eventId,message} = req.body;
+    const event = await Event.findById(eventId);
+    const user = await User.findById(userId);
+
+    if (!event || !user) {
+        return res.status(404).send('Event or User not found');
+    }
+
+    await sendMail(user.email, 'Event Registration Confirmation', message);
+
+    res.status(200).json({
+        success: true,
+        message: "Your request has been submitted successfully",
+      });
+} catch (error) {
+    res.status(500).send('Server error');
+}
+}
 const SendMailtoRegisteteruser=async function (req, res, next) {
   try {
     const userId=req.user.id;
@@ -76,4 +97,4 @@ const updateEventDetail=async function (req, res, next) {
 }
 }
 
-export  {SendMailtoRegisteteruser,updateEventDetail,SendOTP}
+export  {SendMailtoRegisteteruser,updateEventDetail,SendOTP,SendmessageToUser}

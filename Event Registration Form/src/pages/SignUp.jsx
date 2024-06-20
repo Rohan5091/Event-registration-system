@@ -133,7 +133,6 @@ function SignUp() {
     signUpData.otp="000000";
   }
 
- 
   async function handleemailverification() {
      const otp = Math.floor(Math.random() * 1000000);
      setOTP(otp);
