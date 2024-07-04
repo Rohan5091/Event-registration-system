@@ -1,7 +1,7 @@
 
 import { Router } from "express";
 import { authrizedRoll, isLoggedIn } from "../middlewares/userAuth.js";
-import { SendMailtoRegisteteruser, SendOTP, updateEventDetail } from "../controllers/notification.cotroller.js";
+import { SendMailtoRegisteteruser, SendOTP, SendmessageToUser, updateEventDetail } from "../controllers/notification.cotroller.js";
 
 const notificationRouter=Router()
 

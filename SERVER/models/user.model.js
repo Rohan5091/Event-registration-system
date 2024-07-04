@@ -107,5 +107,6 @@ userSchema.methods = {
     return resetToken;
   }
 };
+
 const User = model("User", userSchema);
 export default User;
